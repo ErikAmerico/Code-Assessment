@@ -11,19 +11,21 @@ const body = document.querySelector('body');
 
 
 body.style.backgroundColor = 'lightgrey'
-startButton.setAttribute("style", "background-color: green; border-radius: 10px;")
-submitButton.setAttribute("style", "background-color: red; border-radius: 10px;")
+startButton.setAttribute("style", "background-color: green; border-radius: 10px; font-weight: bold; width: 115 px; height: 37.5px;")
+submitButton.setAttribute("style", "background-color: red; border-radius: 10px; font-weight: bold; width: 115 px; height: 37.5px;")
 
 const restartButton = document.createElement('button');
 restartButton.textContent = 'RESTART';
 restartButton.classList.add('restartButton');
 startButton.insertAdjacentElement('afterend', restartButton)
-restartButton.setAttribute("style", "background-color: yellow; border-radius: 10px;")
+restartButton.setAttribute("style", "background-color: yellow; border-radius: 10px; font-weight: bold; width: 115 px; height: 37.5px;")
 
 main.setAttribute("style", "text-align:center; ")
 header.setAttribute("style", "text-align:center; ")
 choicesContainer.setAttribute("style", "text-align:center; ")
 
+choicesContainer.textContent = "Answer the following questions correctly to achieve the high score!";
+choicesContainer.setAttribute('style', "font-weight: bold; color: teal;")
 
 const boringQuestions = [{
     question: "What is 2+2?",
@@ -70,6 +72,7 @@ startButton.addEventListener('click', function () {
     CurrentQuestionsIndex = 0;
     submitButton.disabled = false;
     restartButton.disabled = false;
+    choicesContainer.setAttribute('style', "font-size: larger; color: black;")
     updateQuestion();
 })
 
