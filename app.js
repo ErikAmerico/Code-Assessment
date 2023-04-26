@@ -8,6 +8,7 @@ const h1 = document.querySelector('h1');
 const header = document.querySelector('header');
 const main = document.querySelector('main');
 const body = document.querySelector('body');
+const choices = ""
 
 
 body.style.backgroundColor = 'lightgrey'
@@ -26,6 +27,7 @@ restartButton.disabled = true;
 main.setAttribute("style", "text-align:center; ")
 header.setAttribute("style", "text-align:center; ")
 choicesContainer.setAttribute("style", "text-align:center; ")
+questionH2.setAttribute("style", "color: teal;")
 
 choicesContainer.textContent = "Answer the following questions correctly to achieve the high score!";
 choicesContainer.setAttribute('style', "font-weight: bold; color: teal;")
@@ -78,6 +80,18 @@ function updateQuestion() {
     return correct;
 }
 
+function defineCorrectAnswer() {
+    const currentQuestion = questions[CurrentQuestionsIndex];
+    correct = currentQuestion.correctAnswer;
+    return correct;
+    console.log(correct)
+}
+
+
+function defineSelectedAnswer() {
+
+}
+
 startButton.addEventListener('click', function () {
     console.log("game started")
     CurrentQuestionsIndex = 0;
@@ -95,6 +109,23 @@ restartButton.addEventListener('click', function () {
 })
 
 submitButton.addEventListener('click', function () {
+    console.log(correct)
+    let isCorrect = false;
+    for (let i = 0; i < choices.length; i++) {
+        if (choices[i].checked) {
+            const selectedAnswer = choices[i].valueOf;
+            if (selectedAnswer === correct) {
+                isCorrect = true;
+            }
+        }
+    }
+    if (isCorrect) {
+        playerScore += countdownTime;
+        result.textContent = "Last answer: CORRECT!";
+    } else {
+        result.textContent = "Last answer: WRONG!";
+        countdownTime -= 20;
+    }
     CurrentQuestionsIndex++;
     if (CurrentQuestionsIndex === questions.length || countdownTime <= 0) {
         endGame();
@@ -102,6 +133,18 @@ submitButton.addEventListener('click', function () {
         updateQuestion();
     }
 });
+
+function endGame() {
+    clearInterval(countdownInterval);
+    countdownTimer.textContent = "YOUR FINAL SCORE: " + countdownTime;
+    questionH2.textContent = "GAME OVER!"
+    choicesContainer.innerHTML = "LETS SEE HOW YOU DID!";
+    submitButton.disabled = true;
+    startButton.disabled = true;
+    restartButton.disabled = false;
+    restartButton.textContent = "RESTART"
+    submitButton.textContent = "-------------"
+}
 
 
 
