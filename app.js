@@ -9,7 +9,7 @@ const h1 = document.querySelector('h1');
 const header = document.querySelector('header');
 const main = document.querySelector('main');
 const body = document.querySelector('body');
-//const choices = document.querySelectorAll('input[name="q1"]');
+const choices = document.querySelectorAll('input[name="q1"]');
 
 
 body.style.backgroundColor = 'lightgrey'
