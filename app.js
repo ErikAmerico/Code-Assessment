@@ -19,7 +19,9 @@ restartButton.classList.add('restartButton');
 startButton.insertAdjacentElement('afterend', restartButton)
 restartButton.setAttribute("style", "background-color: yellow; border-radius: 10px;")
 
-
+main.setAttribute("style", "text-align:center; ")
+header.setAttribute("style", "text-align:center; ")
+choicesContainer.setAttribute("style", "text-align:center; ")
 
 
 const questions = [{
