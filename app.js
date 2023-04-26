@@ -164,6 +164,26 @@ function endGame() {
         localStorage.setItem(playerName, playerScore);
         button.disabled = true;
         button.textContent = "-------------"
+        //CLEAR INPUT FIELD AFTER CLICKING?//
+        let scoreboard = [];
+
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            const value = localStorage.getItem(key);
+            scoreboard.push(`${key}: ${value}`);
+        }
+
+        scoreboard.sort((a, b) => {
+            const numA = parseInt(a.split(":")[1].trim());
+            const numB = parseInt(b.split(":")[1].trim());
+            return numB - numA;
+        });
+
+        for (let i = 0; i < scoreboard.length; i++) {
+            const li = document.createElement('li');
+            li.textContent = scoreboard[i];
+            ol.appendChild(li);
+        }
 
     });
 
