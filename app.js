@@ -144,6 +144,23 @@ function endGame() {
     restartButton.disabled = false;
     restartButton.textContent = "RESTART"
     submitButton.textContent = "-------------"
+
+    const form = document.createElement("form");
+    const label = document.createElement("label");
+    label.setAttribute("style", "font-weight: bold; border:solid teal 2px; border-radius: 10px;")
+    label.textContent = "*Enter initials: ";
+    const input = document.createElement("input");
+    input.type = "text";
+    input.name = "name";
+    const button = document.createElement("button");
+    button.textContent = "Save Score";
+    button.setAttribute("style", "background-color: teal; border-radius: 10px; font-weight: bold; width: 115 px; height: 37.5px;")
+
+
+    form.appendChild(label);
+    form.appendChild(input);
+    form.appendChild(button);
+    choicesContainer.appendChild(form)
 }
 
 
