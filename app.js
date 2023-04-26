@@ -46,14 +46,6 @@ const boringQuestions = [{
     correctAnswer: "April"
 }];
 
-function updateQuestion() {
-    const currentQuestion = questions[CurrentQuestionsIndex]; //where is CQI
-    questionH2.textContent = currentQuestion.question;
-    choicesContainer.innerHTML = "";
-    renderChoices();
-}
-
-
 
 //Again, I don't fully understand this function.
 //But the game would be even more boring without it.
@@ -66,6 +58,13 @@ function shuffleArray(array) {
 }
 const questions = shuffleArray(boringQuestions);
 
+function updateQuestion() {
+    const currentQuestion = questions[CurrentQuestionsIndex]; //where is CQI
+    questionH2.textContent = currentQuestion.question;
+    choicesContainer.innerHTML = "";
+    renderChoices();
+}
+
 startButton.addEventListener('click', function () {
     console.log("game started")
     CurrentQuestionsIndex = 0;
@@ -73,6 +72,19 @@ startButton.addEventListener('click', function () {
     restartButton.disabled = false;
     updateQuestion();
 })
+
+restartButton.addEventListener('click', function () {
+    location.reload();
+})
+
+submitButton.addEventListener('click', function () {
+    CurrentQuestionsIndex++;
+    if (CurrentQuestionsIndex === questions.length || countdownTime <= 0) {
+        endGame();
+    } else {
+        updateQuestion();
+    }
+});
 
 //selectedValues is an attempt to collect chosen answer.
 function renderChoices() {
@@ -96,7 +108,6 @@ function renderChoices() {
     const choices = document.querySelectorAll('input[name="q1"]');
     //**console.log(choices);
     //*console.log(selectedValues)
-    //**return correct;
 }
 
 let countdownInterval;
@@ -109,7 +120,7 @@ function startCountdown() {
             clearInterval(countdownInterval);
             countdownTimer.textContent = 0.0;
             countdownTime = 90;
-            endGame();
+
         } else {
             countdownTimer.textContent = countdownTime;
         }
