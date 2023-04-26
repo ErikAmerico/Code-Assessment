@@ -4,6 +4,7 @@ const submitButton = document.querySelector('.submit')
 const questionH2 = document.querySelector('.question');
 const choicesContainer = document.querySelector('.answers');
 const result = document.querySelector('.result');
+const ol = document.createElement('ol')
 const h1 = document.querySelector('h1');
 const header = document.querySelector('header');
 const main = document.querySelector('main');
@@ -155,6 +156,16 @@ function endGame() {
     const button = document.createElement("button");
     button.textContent = "Save Score";
     button.setAttribute("style", "background-color: teal; border-radius: 10px; font-weight: bold; width: 115 px; height: 37.5px;")
+    button.addEventListener('click', function (event) {
+        event.preventDefault();
+        document.body.appendChild(ol);
+        playerName = input.value;
+        playerScore = countdownTime;
+        localStorage.setItem(playerName, playerScore);
+        button.disabled = true;
+        button.textContent = "-------------"
+
+    });
 
 
     form.appendChild(label);
