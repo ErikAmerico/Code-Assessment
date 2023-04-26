@@ -10,7 +10,7 @@ const header = document.querySelector('header');
 const main = document.querySelector('main');
 const body = document.querySelector('body');
 const choices = document.querySelectorAll('input[name="q1"]');
-
+const countdownTimer = document.getElementById("countdownTimer");
 
 body.style.backgroundColor = 'lightgrey'
 startButton.setAttribute("style", "background-color: green; border-radius: 10px; font-weight: bold; width: 115 px; height: 37.5px;")
@@ -31,7 +31,7 @@ choicesContainer.setAttribute("style", "text-align:center; ")
 questionH2.setAttribute("style", "color: teal;")
 ol.setAttribute("style", "text-align:center; font-size: larger; font-weight:bold")
 
-choicesContainer.textContent = "Answer the following questions correctly to achieve the high score!";
+choicesContainer.textContent = "Answer the following questions correctly to achieve the high score! Don't run out of time.";
 choicesContainer.setAttribute('style', "font-weight: bold; color: teal;")
 
 const boringQuestions = [{
@@ -96,6 +96,7 @@ function defineSelectedAnswer() {
 
 startButton.addEventListener('click', function () {
     console.log("game started")
+    countdownTimer.setAttribute("style", " background-color: white; margin-left:49%; margin-right: 49%; margin-bottom: 20px; font-size: 25px; border: 1px solid teal; border-radius: 10px;")
     CurrentQuestionsIndex = 0;
     submitButton.disabled = false;
     restartButton.disabled = false;
@@ -140,6 +141,7 @@ submitButton.addEventListener('click', function () {
 
 function endGame() {
     clearInterval(countdownInterval);
+    countdownTimer.setAttribute("style", " background-color: white;  margin-left:45%; margin-right: 45%; margin-bottom: 20px; font-size: 15px; border: 1px solid teal; border-radius: 10px;")
     countdownTimer.textContent = "YOUR FINAL SCORE: " + countdownTime;
     questionH2.textContent = "GAME OVER!"
     choicesContainer.innerHTML = "LETS SEE HOW YOU DID!";
@@ -167,7 +169,7 @@ function endGame() {
         localStorage.setItem(playerName, playerScore);
         button.disabled = true;
         button.textContent = "-------------"
-        //CLEAR INPUT FIELD AFTER CLICKING?//
+        input.value = '';
         let scoreboard = [];
 
         for (let i = 0; i < localStorage.length; i++) {
@@ -228,7 +230,7 @@ function renderChoices() {
 
 let countdownInterval;
 let countdownTime = 90;
-const countdownTimer = document.getElementById("countdownTimer");
+
 
 function startCountdown() {
     countdownInterval = setInterval(function () {
