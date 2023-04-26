@@ -9,7 +9,7 @@ const h1 = document.querySelector('h1');
 const header = document.querySelector('header');
 const main = document.querySelector('main');
 const body = document.querySelector('body');
-const choices = ""
+//const choices = document.querySelectorAll('input[name="q1"]');
 
 
 body.style.backgroundColor = 'lightgrey'
@@ -29,6 +29,7 @@ main.setAttribute("style", "text-align:center; ")
 header.setAttribute("style", "text-align:center; ")
 choicesContainer.setAttribute("style", "text-align:center; ")
 questionH2.setAttribute("style", "color: teal;")
+ol.setAttribute("style", "text-align:center; font-size: larger; font-weight:bold")
 
 choicesContainer.textContent = "Answer the following questions correctly to achieve the high score!";
 choicesContainer.setAttribute('style', "font-weight: bold; color: teal;")
@@ -111,6 +112,8 @@ restartButton.addEventListener('click', function () {
 
 submitButton.addEventListener('click', function () {
     console.log(correct)
+    console.log(choices)
+    /////////not sure why choices is not defined. not sure how to see if radio button has been clicked////////
     let isCorrect = false;
     for (let i = 0; i < choices.length; i++) {
         if (choices[i].checked) {
@@ -192,11 +195,13 @@ function endGame() {
     form.appendChild(input);
     form.appendChild(button);
     choicesContainer.appendChild(form)
+    result.textContent = "Good Luck on the scoreboard my friend!";
 }
 
 
 
 //selectedValues is an attempt to collect chosen answer.
+//I believe it collects what you select. But only on the first question asked :(
 function renderChoices() {
     const currentQuestion = questions[CurrentQuestionsIndex];
     const selectedValues = [];
@@ -216,8 +221,9 @@ function renderChoices() {
         choicesContainer.appendChild(li)
     }
     const choices = document.querySelectorAll('input[name="q1"]');
-    //**console.log(choices);
-    //*console.log(selectedValues)
+
+    console.log(choices);
+    console.log(selectedValues)
 }
 
 let countdownInterval;
@@ -230,8 +236,8 @@ function startCountdown() {
         if (countdownTime <= 0) {
             clearInterval(countdownInterval);
             countdownTimer.textContent = 0.0;
+            endGame();
             countdownTime = 90;
-
         } else {
             countdownTimer.textContent = countdownTime;
         }
