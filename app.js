@@ -44,3 +44,18 @@ const questions = [{
     answers: ["Tuesday", "March", "December", "April"],
     correctAnswer: "April"
 }];
+
+function updateQuestion() {
+    const currentQuestion = questions[CurrentQuestionsIndex]; //where is CQI
+    questionH2.textContent = currentQuestion.question;
+    choicesContainer.innerHTML = "";
+}
+
+startButton.addEventListener('click', function () {
+    console.log("game started")
+    CurrentQuestionsIndex = 0;
+    submitButton.disabled = false;
+    restartButton.disabled = false;
+    updateQuestion();
+})
+
