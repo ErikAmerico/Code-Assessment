@@ -9,6 +9,10 @@ const header = document.querySelector('header')
 const main = document.querySelector('main')
 const body = document.querySelector('body')
 
+body.style.backgroundColor = 'lightgrey'
+startButton.setAttribute("style", "background-color: green; border-radius: 10px;")
+submitButton.setAttribute("style", "background-color: red; border-radius: 10px;")
+
 const restartButton = document.createElement('button');
 restartButton.textContent = 'RESTART';
 restartButton.classList.add('restartButton');
