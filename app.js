@@ -20,6 +20,9 @@ restartButton.classList.add('restartButton');
 startButton.insertAdjacentElement('afterend', restartButton)
 restartButton.setAttribute("style", "background-color: yellow; border-radius: 10px; font-weight: bold; width: 115 px; height: 37.5px;")
 
+submitButton.disabled = true;
+restartButton.disabled = true;
+
 main.setAttribute("style", "text-align:center; ")
 header.setAttribute("style", "text-align:center; ")
 choicesContainer.setAttribute("style", "text-align:center; ")
@@ -65,6 +68,10 @@ function updateQuestion() {
     questionH2.textContent = currentQuestion.question;
     choicesContainer.innerHTML = "";
     renderChoices();
+    startButton.disabled = true;
+    startButton.textContent = "-----------"
+    restartButton.disabled = true;
+    restartButton.textContent = "-----------"
 }
 
 startButton.addEventListener('click', function () {
@@ -75,6 +82,8 @@ startButton.addEventListener('click', function () {
     choicesContainer.setAttribute('style', "font-size: larger; color: black;")
     updateQuestion();
 })
+
+startCountdown();
 
 restartButton.addEventListener('click', function () {
     location.reload();
@@ -88,6 +97,8 @@ submitButton.addEventListener('click', function () {
         updateQuestion();
     }
 });
+
+
 
 //selectedValues is an attempt to collect chosen answer.
 function renderChoices() {
