@@ -63,15 +63,19 @@ function shuffleArray(array) {
 }
 const questions = shuffleArray(boringQuestions);
 
+let correct;
+
 function updateQuestion() {
     const currentQuestion = questions[CurrentQuestionsIndex]; //where is CQI
     questionH2.textContent = currentQuestion.question;
     choicesContainer.innerHTML = "";
     renderChoices();
+    const correct = defineCorrectAnswer();
     startButton.disabled = true;
     startButton.textContent = "-----------"
     restartButton.disabled = true;
     restartButton.textContent = "-----------"
+    return correct;
 }
 
 startButton.addEventListener('click', function () {
@@ -81,9 +85,10 @@ startButton.addEventListener('click', function () {
     restartButton.disabled = false;
     choicesContainer.setAttribute('style', "font-size: larger; color: black;")
     updateQuestion();
+    startCountdown();
 })
 
-startCountdown();
+
 
 restartButton.addEventListener('click', function () {
     location.reload();
@@ -126,6 +131,7 @@ function renderChoices() {
 
 let countdownInterval;
 let countdownTime = 90;
+const countdownTimer = document.getElementById("countdownTimer");
 
 function startCountdown() {
     countdownInterval = setInterval(function () {
