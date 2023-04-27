@@ -1,4 +1,3 @@
-
 const startButton = document.querySelector('.start');
 const submitButton = document.querySelector('.submit')
 const questionH2 = document.querySelector('.question');
@@ -9,7 +8,7 @@ const h1 = document.querySelector('h1');
 const header = document.querySelector('header');
 const main = document.querySelector('main');
 const body = document.querySelector('body');
-const choices = document.querySelectorAll('input[name="q1"]');
+let choices = document.querySelectorAll('input[name="q1"]');
 const countdownTimer = document.getElementById("countdownTimer");
 
 body.style.backgroundColor = 'lightgrey'
@@ -30,6 +29,7 @@ header.setAttribute("style", "text-align:center; ")
 choicesContainer.setAttribute("style", "text-align:center; ")
 questionH2.setAttribute("style", "color: teal;")
 ol.setAttribute("style", "text-align:center; font-size: larger; font-weight:bold")
+h1.setAttribute("style", '')
 
 choicesContainer.textContent = "Answer the following questions correctly to achieve the high score! Don't run out of time.";
 choicesContainer.setAttribute('style', "font-weight: bold; color: teal;")
@@ -37,7 +37,7 @@ choicesContainer.setAttribute('style', "font-weight: bold; color: teal;")
 const boringQuestions = [{
     question: "What is 2+2?",
     answers: ["3", "4", "5", "5"],
-    correctAnswer: "4" //this.answers[1]
+    correctAnswer: "4"
 },
 {
     question: "What is the capital of Mass?",
@@ -86,17 +86,13 @@ function defineCorrectAnswer() {
     const currentQuestion = questions[CurrentQuestionsIndex];
     correct = currentQuestion.correctAnswer;
     return correct;
-    console.log(correct)
+    //console.log(correct)
 }
 
-
-function defineSelectedAnswer() {
-
-}
 
 startButton.addEventListener('click', function () {
-    console.log("game started")
-    countdownTimer.setAttribute("style", " background-color: white; margin-left:49%; margin-right: 49%; margin-bottom: 20px; font-size: 25px; border: 1px solid teal; border-radius: 10px;")
+    //console.log("game started")
+    countdownTimer.setAttribute("style", " background-color: white; margin-left:45%; margin-right: 45%; margin-bottom: 20px; font-size: 25px; border: 1px solid teal; border-radius: 10px;")
     CurrentQuestionsIndex = 0;
     submitButton.disabled = false;
     restartButton.disabled = false;
@@ -105,27 +101,25 @@ startButton.addEventListener('click', function () {
     startCountdown();
 })
 
-
-
 restartButton.addEventListener('click', function () {
     location.reload();
 })
 
 submitButton.addEventListener('click', function () {
     console.log(correct)
-    console.log(choices)
+    //console.log(choices + "in submit")
     /////////not sure why choices is not defined. not sure how to see if radio button has been clicked////////
     let isCorrect = false;
     for (let i = 0; i < choices.length; i++) {
         if (choices[i].checked) {
-            const selectedAnswer = choices[i].valueOf;
+            const selectedAnswer = choices[i].value;
             if (selectedAnswer === correct) {
                 isCorrect = true;
             }
         }
     }
+    console.log(choices)
     if (isCorrect) {
-        playerScore += countdownTime;
         result.textContent = "Last answer: CORRECT!";
     } else {
         result.textContent = "Last answer: WRONG!";
@@ -164,8 +158,8 @@ function endGame() {
     button.addEventListener('click', function (event) {
         event.preventDefault();
         document.body.appendChild(ol);
-        playerName = input.value;
-        playerScore = countdownTime;
+        let playerName = input.value;
+        let playerScore = countdownTime;
         localStorage.setItem(playerName, playerScore);
         button.disabled = true;
         button.textContent = "-------------"
@@ -201,7 +195,6 @@ function endGame() {
 }
 
 
-
 //selectedValues is an attempt to collect chosen answer.
 //I believe it collects what you select. But only on the first question asked :(
 function renderChoices() {
@@ -216,16 +209,10 @@ function renderChoices() {
         input.value = answer;
         input.checked = false;
         li.appendChild(input);
-        li.appendChild(document.createTextNode(answer));
-        li.addEventListener('click', function () {
-            selectedValues.push(input.value);
-        })
+        li.appendChild(document.createTextNode(answer));//li.textcontent = answer
         choicesContainer.appendChild(li)
     }
-    const choices = document.querySelectorAll('input[name="q1"]');
-
-    console.log(choices);
-    console.log(selectedValues)
+    choices = document.querySelectorAll('input[name="q1"]');
 }
 
 let countdownInterval;
