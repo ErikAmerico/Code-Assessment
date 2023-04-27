@@ -55,7 +55,6 @@ const boringQuestions = [{
     correctAnswer: "April"
 }];
 
-
 //Again, I don't fully understand this function.
 //But the game would be even more boring without it.
 function shuffleArray(array) {
@@ -86,12 +85,9 @@ function defineCorrectAnswer() {
     const currentQuestion = questions[CurrentQuestionsIndex];
     correct = currentQuestion.correctAnswer;
     return correct;
-    //console.log(correct)
 }
 
-
 startButton.addEventListener('click', function () {
-    //console.log("game started")
     countdownTimer.setAttribute("style", " background-color: white; margin-left:45%; margin-right: 45%; margin-bottom: 20px; font-size: 25px; border: 1px solid teal; border-radius: 10px;")
     CurrentQuestionsIndex = 0;
     submitButton.disabled = false;
@@ -106,9 +102,6 @@ restartButton.addEventListener('click', function () {
 })
 
 submitButton.addEventListener('click', function () {
-    console.log(correct)
-    //console.log(choices + "in submit")
-    /////////not sure why choices is not defined. not sure how to see if radio button has been clicked////////
     let isCorrect = false;
     for (let i = 0; i < choices.length; i++) {
         if (choices[i].checked) {
@@ -194,12 +187,9 @@ function endGame() {
     form.appendChild(input);
     form.appendChild(button);
     choicesContainer.appendChild(form)
-    result.textContent = "Good Luck on the scoreboard my friend!";
+    result.textContent = "--Good Luck on the scoreboard my friend!--";
 }
 
-
-//selectedValues is an attempt to collect chosen answer.
-//I believe it collects what you select. But only on the first question asked :(
 function renderChoices() {
     const currentQuestion = questions[CurrentQuestionsIndex];
     const selectedValues = [];
@@ -220,7 +210,6 @@ function renderChoices() {
 
 let countdownInterval;
 let countdownTime = 90;
-
 
 function startCountdown() {
     countdownInterval = setInterval(function () {
