@@ -29,7 +29,7 @@ header.setAttribute("style", "text-align:center; ")
 choicesContainer.setAttribute("style", "text-align:center; ")
 questionH2.setAttribute("style", "color: teal;")
 ol.setAttribute("style", "text-align:center; font-size: larger; font-weight:bold")
-h1.setAttribute("style", '')
+h1.setAttribute("style", 'background-color: white; border: 1px solid teal; margin-right: 33%; margin-left: 33%; border-radius: 10px; box-shadow: 5px 5px 10px 5px teal;')
 
 choicesContainer.textContent = "Answer the following questions correctly to achieve the high score! Don't run out of time.";
 choicesContainer.setAttribute('style', "font-weight: bold; color: teal;")
@@ -137,7 +137,7 @@ submitButton.addEventListener('click', function () {
 
 function endGame() {
     clearInterval(countdownInterval);
-    countdownTimer.setAttribute("style", " background-color: white;  margin-left:45%; margin-right: 45%; margin-bottom: 20px; font-size: 15px; border: 1px solid teal; border-radius: 10px;")
+    countdownTimer.setAttribute("style", " background-color: white;  margin-left:44%; margin-right: 44%; margin-bottom: 20px; font-size: 15px; border: 1px solid teal; border-radius: 10px;")
     countdownTimer.textContent = "YOUR FINAL SCORE: " + countdownTime;
     questionH2.textContent = "GAME OVER!"
     choicesContainer.innerHTML = "LETS SEE HOW YOU DID!";
@@ -154,6 +154,7 @@ function endGame() {
     const input = document.createElement("input");
     input.type = "text";
     input.name = "name";
+    input.maxLength = 3;
     const button = document.createElement("button");
     button.textContent = "Save Score";
     button.setAttribute("style", "background-color: teal; border-radius: 10px; font-weight: bold; width: 115 px; height: 37.5px;")
