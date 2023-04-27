@@ -122,12 +122,14 @@ submitButton.addEventListener('click', function () {
     if (isCorrect) {
         result.textContent = "Last answer: CORRECT!";
     } else {
-        result.textContent = "Last answer: WRONG!";
+        result.textContent = "Last answer: WRONG. -20 seconds, aka POINTS!";
         countdownTime -= 20;
     }
     CurrentQuestionsIndex++;
     if (CurrentQuestionsIndex === questions.length || countdownTime <= 0) {
-        endGame();
+        setTimeout(function () {
+            endGame();
+        }, 1500);
     } else {
         updateQuestion();
     }
