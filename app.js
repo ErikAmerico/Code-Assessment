@@ -117,6 +117,10 @@ submitButton.addEventListener('click', function () {
     } else {
         result.textContent = "Last answer: WRONG. -20 seconds, aka POINTS!";
         countdownTime -= 20;
+        submitButton.disabled = true;
+        setTimeout(function () {
+            submitButton.disabled = false;
+        }, 1000);
     }
     CurrentQuestionsIndex++;
     if (CurrentQuestionsIndex === questions.length || countdownTime <= 0) {
