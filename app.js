@@ -28,31 +28,31 @@ main.setAttribute("style", "text-align:center; ")
 header.setAttribute("style", "text-align:center; ")
 choicesContainer.setAttribute("style", "text-align:center; ")
 questionH2.setAttribute("style", "color: teal;")
-ol.setAttribute("style", "text-align:center; font-size: larger; font-weight:bold")
-h1.setAttribute("style", 'background-color: white; border: 1px solid teal; margin-right: 33%; margin-left: 33%; border-radius: 10px; box-shadow: 5px 5px 10px 5px teal;')
+ol.setAttribute("style", "text-align:center; font-size: larger; font-weight:bold; margin-top: -13%; border-top: 1px solid teal; border-bottom: 1px solid teal; margin-left: 40%; margin-right: 40%;")
+h1.setAttribute("style", 'background-color: white; border: 1px solid teal; margin-right: -5%; margin-left: -5%; border-radius: 10px; box-shadow: 5px 5px 10px 5px teal;')
 
 choicesContainer.textContent = "Answer the following questions correctly to achieve the high score! Don't run out of time.";
 choicesContainer.setAttribute('style', "font-weight: bold; color: teal;")
 
 const boringQuestions = [{
-    question: "What is 2+2?",
-    answers: ["3", "4", "5", "5"],
-    correctAnswer: "4"
+    question: "What year was Javascript created?",
+    answers: ["1995", "2003", "1978", "2008"],
+    correctAnswer: "1995"
 },
 {
-    question: "What is the capital of Mass?",
-    answers: ["Amesbury", "Boston", "Derry, NH", "Somerville"],
-    correctAnswer: "Boston"
+    question: "Which of these are a value of a Boolean?",
+    answers: ["Redefined", "Undefined", "True", "Null"],
+    correctAnswer: "True"
 },
 {
-    question: "Who is the President?",
-    answers: ["Obama", "Trump", "Biden", "Tom Brady"],
-    correctAnswer: "Biden"
+    question: "Javascript is an _______ language?",
+    answers: ["Object-Oriented", "Object-Based", "Procedural", "Spanish"],
+    correctAnswer: "Object-Oriented"
 },
 {
-    question: "What month is it?",
-    answers: ["Tuesday", "March", "December", "April"],
-    correctAnswer: "April"
+    question: "Which of the following methods is used to access HTML elements using Javascript?",
+    answers: ["getElementByClassName()", "getElementId()", "Element()", "None"],
+    correctAnswer: "getElementByClassName()"
 }];
 
 //Again, I don't fully understand this function.
@@ -88,7 +88,7 @@ function defineCorrectAnswer() {
 }
 
 startButton.addEventListener('click', function () {
-    countdownTimer.setAttribute("style", " background-color: white; margin-left:45%; margin-right: 45%; margin-bottom: 20px; font-size: 25px; border: 1px solid teal; border-radius: 10px;")
+    countdownTimer.setAttribute("style", " background-color: white; margin-left:40%; margin-right: 40%; margin-bottom: 20px; font-size: 25px; border: 1px solid teal; border-radius: 10px;")
     CurrentQuestionsIndex = 0;
     submitButton.disabled = false;
     restartButton.disabled = false;
@@ -134,7 +134,7 @@ submitButton.addEventListener('click', function () {
 
 function endGame() {
     clearInterval(countdownInterval);
-    countdownTimer.setAttribute("style", " background-color: white;  margin-left:44%; margin-right: 44%; margin-bottom: 20px; font-size: 15px; border: 1px solid teal; border-radius: 10px;")
+    countdownTimer.setAttribute("style", " background-color: white;  margin-left: 10%; margin-right: 10%; margin-bottom: 20px; font-size: 15px; border: 1px solid teal; border-radius: 10px;")
     countdownTimer.textContent = "YOUR FINAL SCORE: " + countdownTime;
     questionH2.textContent = "GAME OVER!"
     choicesContainer.innerHTML = "LETS SEE HOW YOU DID!";
@@ -170,9 +170,9 @@ function endGame() {
             const key = localStorage.key(i);
             const value = localStorage.getItem(key);
             scoreboard.push(`${key}: ${value}`);
-        }
+        };
 
-        scoreboard.sort((a, b) => {
+        scoreboard.sort(function (a, b) {
             const numA = parseInt(a.split(":")[1].trim());
             const numB = parseInt(b.split(":")[1].trim());
             return numB - numA;
@@ -206,7 +206,7 @@ function renderChoices() {
         input.value = answer;
         input.checked = false;
         li.appendChild(input);
-        li.appendChild(document.createTextNode(answer));//li.textcontent = answer
+        li.appendChild(document.createTextNode(answer));
         choicesContainer.appendChild(li)
     }
     choices = document.querySelectorAll('input[name="q1"]');
