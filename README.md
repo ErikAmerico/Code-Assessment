@@ -4,6 +4,8 @@ Welcome! This is a timed multiple choice quiz/game. As you answer questions, an 
 
 ## About this page
 Here is an example screen shot of the webpage:
+![image](https://user-images.githubusercontent.com/111093132/235044275-7f13bc97-ea8e-4a7f-9ea5-d0ea6575f096.png)
+
 
 
 ### Technologies used
