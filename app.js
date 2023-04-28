@@ -28,7 +28,7 @@ main.setAttribute("style", "text-align:center; ")
 header.setAttribute("style", "text-align:center; ")
 choicesContainer.setAttribute("style", "text-align:center; ")
 questionH2.setAttribute("style", "color: teal;")
-ol.setAttribute("style", "text-align:center; font-size: larger; font-weight:bold; margin-top: -13%; border-top: 1px solid teal;")
+ol.setAttribute("style", "text-align:center; font-size: larger; font-weight:bold; margin-top: -10%; border-top: 1px solid teal;")
 h1.setAttribute("style", 'background-color: white; border: 1px solid teal; margin-right: -5%; margin-left: -5%; border-radius: 10px; box-shadow: 5px 5px 10px 5px teal;')
 
 choicesContainer.textContent = "Answer the following questions correctly to achieve the high score! Don't run out of time.";
